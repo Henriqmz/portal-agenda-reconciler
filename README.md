@@ -1,6 +1,8 @@
 # Portal Agenda Reconciler (2FA + CRM + Excel)
 
-Ferramenta em Python para coleta consolidada de agendas em múltiplos portais regionais (com geração de código **2FA TOTP com compensação automática de desvio de relógio**), cruzamento automático com um CRM e exportação em **planilha Excel multiabas estilizada (`openpyxl`)**.
+![Interface Portal Agenda Reconciler](docs/preview.png)
+
+Ferramenta e estúdio web em Python (`--serve`) para coleta consolidada de agendas em múltiplos portais regionais (com geração de código **2FA TOTP com compensação automática de desvio de relógio**), cruzamento automático com um CRM e exportação em **planilha Excel multiabas estilizada (`openpyxl`)**.
 
 > **100% demonstrável localmente:** execute `python -m src.cli --demo` para gerar uma planilha Excel pronta em `output/reconciliacao_agenda_crm.xlsx` usando dados sintéticos de clínicas/unidades regionais e parceiros externos.
 
@@ -19,7 +21,10 @@ Ferramenta em Python para coleta consolidada de agendas em múltiplos portais re
 ```bash
 pip install -r requirements.txt
 
-# Gera a planilha de reconciliação em modo demonstração
+# Inicia o Estúdio Web interativo em http://127.0.0.1:8022
+python -m src.cli --serve
+
+# Ou gera a planilha de reconciliação via CLI
 python -m src.cli --demo
 
 # Roda os testes automatizados

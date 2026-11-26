@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 from .reconciler import AgendaItem, CRMRecord, export_excel_report, reconcile_agenda
+from .server import run_studio
 from .totp_sync import generate_totp_compensated
 
 
@@ -34,11 +35,15 @@ def run_demo(output_path: Path = Path("output/reconciliacao_agenda_crm.xlsx")) -
 def main() -> None:
     parser = argparse.ArgumentParser(description="Portal Agenda Reconciler")
     parser.add_argument("--demo", action="store_true", help="Gera planilha demo com dados fictícios")
+    parser.add_argument("--serve", action="store_true", help="Inicia o painel web interativo de reconciliação")
+    parser.add_argument("--port", type=int, default=8022, help="Porta do painel web (padrão: 8022)")
     args = parser.parse_args()
-    if args.demo:
+    if args.serve:
+        run_studio(port=args.port)
+    elif args.demo:
         run_demo()
     else:
-        print("Use --demo para executar com dados sintéticos ou configure .env para produção.")
+        print("Use --demo para gerar planilha ou --serve para abrir o painel web.")
 
 
 if __name__ == "__main__":
